@@ -29,7 +29,7 @@ cmd(
         });
       }
 
-      let menuText = "📋 *Available Commands:*\n";
+      let menuText = "👋 𝙃𝙚𝙡𝙡𝙤𝙬,I'm SADUNI┃🤖 ʙᴏᴛ ɴᴀᴍᴇ : LAKIYA MD┃🔖 ᴠᴇʀsɪᴏɴ : 1.0┃📟 ᴘʟᴀᴛғᴏʀᴍ : Linux ┃👨‍💻 ᴏᴡɴᴇʀ: *Yasiru Wijewardhana* ┗━━━━━━━━━━━━━━𖣔𖣔🧚‍♂️ 𝙄𝙈 SADUNI-𝙈𝘿 𝙒𝙃𝘼𝙏𝙎𝘼𝙋𝙋 𝘽𝙊𝙏🤖.𝙎𝙄𝙈𝙋𝙇𝙀 𝙅𝘼𝙑𝘼 𝙎𝘾𝙍𝙄𝙋𝙏 𝘽𝙊𝙏⚙️.YASIRU WIJEWARDHANA 𝙄𝙎 𝙈𝙔 𝘾𝙍𝙀𝘼𝙏𝙀𝙍👨‍💻.📋 *Available Commands:*\n";
 
       for (const [cat, cmds] of Object.entries(categories)) {
         menuText += `\n📂 *${cat.toUpperCase()}*\n`;
@@ -45,3 +45,4 @@ cmd(
     }
   }
 );
+
