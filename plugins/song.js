@@ -94,7 +94,7 @@ cmd(
         { quoted: mek }
       );
 
-      return reply("✅ Thank you");
+      return reply("✅ ස්තූති.සදුනිත් එක්ක එකතු උනාට!");
     } catch (e) {
       console.log(e);
       reply(`❌ *Error:* ${e.message} 😞`);
