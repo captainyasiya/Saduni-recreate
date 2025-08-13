@@ -1,12 +1,13 @@
 {
   "name": "සදුනි-MD",
   "version": "1.0.0",
-  "description": "A Powerfull Whatsapp Bot",
+  "description": "A Powerful Whatsapp Bot",
   "main": "index.js",
   "scripts": {
     "start": "pm2 start index.js --deep-monitoring --attach --name SADUNI-MD",
     "stop": "pm2 stop SADUNI-MD",
-    "restart": "pm2 restart SADUNI-MD"
+    "restart": "pm2 restart SADUNI-MD",
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.18",
