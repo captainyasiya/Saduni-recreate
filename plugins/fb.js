@@ -67,7 +67,7 @@ Your fb video
         from,
         {
           image: {
-            url: "https://github.com/saduni-MD/saduni-MD/blob/main/images/fbdownloader.png?raw=true",
+            url: "https://github.com/captainyasiya/Saduni-recreate/blob/main/images/SADUNI%20-%20MD%20facebook.png?raw=true",
           },
           caption: desc,
         },
@@ -78,12 +78,12 @@ Your fb video
         from,
         {
           video: { url: bestQualityUrl },
-          caption: `*📥 Downloaded in ${qualityText} quality*`,
+          caption: `*📥 Download කරා ${qualityText} quality*`,
         },
         { quoted: mek }
       );
 
-      return reply("Thank you for using saduni-MD");
+      return reply("ස්තූති සදුනිව පවිච්චි කරාට");
     } catch (e) {
       console.error(e);
       reply(`*Error:* ${e.message || e}`);
