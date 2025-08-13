@@ -89,7 +89,7 @@ async function connectToWA() {
 
       const up = `saduni-MD-MD connected ✅\n\nPREFIX: ${prefix}`;
       await saduni.sendMessage(ownerNumber[0] + "@s.whatsapp.net", {
-        image: { url: `https://github.com/captainyasiya/Saduni-recreate/blob/main/images/SADUNI%20-%20MD.png?raw=true` },
+        image: { url: `https://github.com/captainyasiya/Saduni-recreate/blob/main/images/SADUNI%20-%20MD%202.0.png?raw=true` },
         caption: up
       });
 
