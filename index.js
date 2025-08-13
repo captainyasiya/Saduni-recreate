@@ -85,9 +85,9 @@ async function connectToWA() {
         connectToWA();
       }
     } else if (connection === 'open') {
-      console.log('✅saduni-MD-MD connected to WhatsApp');
+      console.log('✅ සදුනි-MD connected to WhatsApp');
 
-      const up = `saduni-MD-MD connected ✅\n\nPREFIX: ${prefix}`;
+      const up = `සදුනි-MD connected ✅\n\n PREFIX: ${prefix}`;
       await saduni.sendMessage(ownerNumber[0] + "@s.whatsapp.net", {
         image: { url: `https://github.com/captainyasiya/Saduni-recreate/blob/main/images/SADUNI%20-%20MD%202.0.png?raw=true` },
         caption: up
@@ -179,7 +179,7 @@ async function connectToWA() {
 ensureSessionFile();
 
 app.get("/", (req, res) => {
-  res.send("Hey, saduni-MD started✅");
+  res.send("Hey,සදුනි-MD started✅");
 });
 
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
