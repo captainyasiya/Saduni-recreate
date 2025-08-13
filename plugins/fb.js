@@ -11,7 +11,7 @@ cmd(
     filename: __filename,
   },
   async (
-    danuwa,
+    saduni,
     mek,
     m,
     {
@@ -44,13 +44,13 @@ cmd(
 
       const fbRegex = /(https?:\/\/)?(www\.)?(facebook|fb)\.com\/.+/;
       if (!fbRegex.test(q))
-        return reply("*Invalid Facebook URL! Please check and try again.* ☹️");
+        return reply("*වැරදි Facebook URL එකක්! ආයෙ බලහන්.* ☹️");
 
-      reply("*Downloading your video...* ❤️");
+      reply("*ඔයාගෙ Video එක Download වෙන ගමන්...* ❤️");
 
       const result = await getFbVideoInfo(q);
       if (!result || (!result.sd && !result.hd)) {
-        return reply("*Failed to download video. Please try again later.* ☹️");
+        return reply("*මොකක් හරි අවුලක් අයෙ Try කරහන්.* ☹️");
       }
 
       const { title, sd, hd } = result;
@@ -63,18 +63,18 @@ Your fb video
 👻 *Quality*: ${qualityText}
 `;
 
-      await danuwa.sendMessage(
+      await saduni.sendMessage(
         from,
         {
           image: {
-            url: "https://github.com/DANUWA-MD/DANUWA-MD/blob/main/images/fbdownloader.png?raw=true",
+            url: "https://github.com/saduni-MD/saduni-MD/blob/main/images/fbdownloader.png?raw=true",
           },
           caption: desc,
         },
         { quoted: mek }
       );
 
-      await danuwa.sendMessage(
+      await saduni.sendMessage(
         from,
         {
           video: { url: bestQualityUrl },
@@ -83,7 +83,7 @@ Your fb video
         { quoted: mek }
       );
 
-      return reply("Thank you for using DANUWA-MD");
+      return reply("Thank you for using saduni-MD");
     } catch (e) {
       console.error(e);
       reply(`*Error:* ${e.message || e}`);
