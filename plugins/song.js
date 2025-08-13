@@ -40,14 +40,14 @@ cmd(
     }
   ) => {
     try {
-      if (!q) return reply("❌ *Please provide a song name or YouTube link*");
+      if (!q) return reply("❌ *සින්දුවෙ නම හරි Link එක හරි දාල Sharch කරන්න*");
 
       const search = await yts(q);
       const data = search.videos[0];
       const url = data.url;
 
       let desc = `
-Song downloader
+සින්දු downloader
 🎬 *Title:* ${data.title}
 ⏱️ *Duration:* ${data.timestamp}
 📅 *Uploaded:* ${data.ago}
@@ -71,7 +71,7 @@ Song downloader
           : durationParts[0] * 60 + durationParts[1];
 
       if (totalSeconds > 1800) {
-        return reply("⏳ *Sorry, audio files longer than 30 minutes are not supported.*");
+        return reply("⏳ *මේක විනාඩි 30 වඩා වැඩි බ්න් .*");
       }
 
       await saduni.sendMessage(
@@ -89,7 +89,7 @@ Song downloader
           document: { url: songData.download.url },
           mimetype: "audio/mpeg",
           fileName: `${data.title}.mp3`,
-          caption: "🎶 *Your song is ready to be played!*",
+          caption: "🎶 *සින්දුව හරි කොල්ලො!*",
         },
         { quoted: mek }
       );
