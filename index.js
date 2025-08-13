@@ -37,7 +37,7 @@ async function ensureSessionFile() {
       process.exit(1);
     }
 
-    console.log("🔄 සදුනි creds.json not found. Downloading session from MEGA...");
+    console.log("🔄 saduni creds.json not found. Downloading session from MEGA...");
 
     const sessdata = config.SESSION_ID;
     const filer = File.fromURL(`https://mega.nz/file/${sessdata}`);
@@ -63,11 +63,11 @@ async function ensureSessionFile() {
 }
 
 async function connectToWA() {
-  console.log("Connecting සදුනි-MD 🧬...");
+  console.log("Connecting SADUNI-MD 🧬...");
   const { state, saveCreds } = await useMultiFileAuthState(path.join(__dirname, '/auth_info_baileys/'));
   const { version } = await fetchLatestBaileysVersion();
 
-  const සදුනි = makeWASocket({
+  const saduni = makeWASocket({
     logger: P({ level: 'silent' }),
     printQRInTerminal: false,
     browser: Browsers.macOS("Firefox"),
@@ -78,17 +78,17 @@ async function connectToWA() {
     generateHighQualityLinkPreview: true,
   });
 
-  සදුනි.ev.on('connection.update', async (update) => {
+  saduni.ev.on('connection.update', async (update) => {
     const { connection, lastDisconnect } = update;
     if (connection === 'close') {
       if (lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) {
         connectToWA();
       }
     } else if (connection === 'open') {
-      console.log('✅සදුනි-MD-MD connected to WhatsApp');
+      console.log('✅saduni-MD-MD connected to WhatsApp');
 
-      const up = `සදුනි-MD-MD connected ✅\n\nPREFIX: ${prefix}`;
-      await සදුනි.sendMessage(ownerNumber[0] + "@s.whatsapp.net", {
+      const up = `saduni-MD-MD connected ✅\n\nPREFIX: ${prefix}`;
+      await saduni.sendMessage(ownerNumber[0] + "@s.whatsapp.net", {
         image: { url: `https://github.com/captainyasiya/Saduni-recreate/blob/main/images/SADUNI%20-%20MD.png?raw=true` },
         caption: up
       });
@@ -101,12 +101,12 @@ async function connectToWA() {
     }
   });
 
-  සදුනි.ev.on('creds.update', saveCreds);
+  saduni.ev.on('creds.update', saveCreds);
 
-  සදුනි.ev.on('messages.upsert', async ({ messages }) => {
+  saduni.ev.on('messages.upsert', async ({ messages }) => {
     for (const msg of messages) {
       if (msg.messageStubType === 68) {
-        await සදුනි.sendMessageAck(msg.key);
+        await saduni.sendMessageAck(msg.key);
       }
     }
 
@@ -116,7 +116,7 @@ async function connectToWA() {
     mek.message = getContentType(mek.message) === 'ephemeralMessage' ? mek.message.ephemeralMessage.message : mek.message;
     if (mek.key.remoteJid === 'status@broadcast') return;
 
-    const m = sms(සදුනි, mek);
+    const m = sms(saduni, mek);
     const type = getContentType(mek.message);
     const from = mek.key.remoteJid;
     const body = type === 'conversation' ? mek.message.conversation : mek.message[type]?.text || mek.message[type]?.caption || '';
@@ -125,30 +125,30 @@ async function connectToWA() {
     const args = body.trim().split(/ +/).slice(1);
     const q = args.join(' ');
 
-    const sender = mek.key.fromMe ? සදුනි.user.id : (mek.key.participant || mek.key.remoteJid);
+    const sender = mek.key.fromMe ? saduni.user.id : (mek.key.participant || mek.key.remoteJid);
     const senderNumber = sender.split('@')[0];
     const isGroup = from.endsWith('@g.us');
-    const botNumber = සදුනි.user.id.split(':')[0];
+    const botNumber = saduni.user.id.split(':')[0];
     const pushname = mek.pushName || 'Sin Nombre';
     const isMe = botNumber.includes(senderNumber);
     const isOwner = ownerNumber.includes(senderNumber) || isMe;
-    const botNumber2 = await jidNormalizedUser(සදුනි.user.id);
+    const botNumber2 = await jidNormalizedUser(saduni.user.id);
 
-    const groupMetadata = isGroup ? await සදුනි.groupMetadata(from).catch(() => {}) : '';
+    const groupMetadata = isGroup ? await saduni.groupMetadata(from).catch(() => {}) : '';
     const groupName = isGroup ? groupMetadata.subject : '';
     const participants = isGroup ? groupMetadata.participants : '';
     const groupAdmins = isGroup ? await getGroupAdmins(participants) : '';
     const isBotAdmins = isGroup ? groupAdmins.includes(botNumber2) : false;
     const isAdmins = isGroup ? groupAdmins.includes(sender) : false;
 
-    const reply = (text) => සදුනි.sendMessage(from, { text }, { quoted: mek });
+    const reply = (text) => saduni.sendMessage(from, { text }, { quoted: mek });
 
     if (isCmd) {
       const cmd = commands.find((c) => c.pattern === commandName || (c.alias && c.alias.includes(commandName)));
       if (cmd) {
-        if (cmd.react) සදුනි.sendMessage(from, { react: { text: cmd.react, key: mek.key } });
+        if (cmd.react) saduni.sendMessage(from, { react: { text: cmd.react, key: mek.key } });
         try {
-          cmd.function(සදුනි, mek, m, {
+          cmd.function(saduni, mek, m, {
             from, quoted: mek, body, isCmd, command: commandName, args, q,
             isGroup, sender, senderNumber, botNumber2, botNumber, pushname,
             isMe, isOwner, groupMetadata, groupName, participants, groupAdmins,
@@ -164,7 +164,7 @@ async function connectToWA() {
     for (const handler of replyHandlers) {
       if (handler.filter(replyText, { sender, message: mek })) {
         try {
-          await handler.function(සදුනි, mek, m, {
+          await handler.function(saduni, mek, m, {
             from, quoted: mek, body: replyText, sender, reply,
           });
           break;
@@ -179,7 +179,7 @@ async function connectToWA() {
 ensureSessionFile();
 
 app.get("/", (req, res) => {
-  res.send("Hey, සදුනි-MD started✅");
+  res.send("Hey, saduni-MD started✅");
 });
 
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
