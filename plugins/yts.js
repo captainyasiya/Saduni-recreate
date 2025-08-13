@@ -11,7 +11,7 @@ cmd(
     filename: __filename,
   },
   async (
-    danuwa,
+    saduni,
     mek,
     m,
     {
@@ -22,14 +22,14 @@ cmd(
     }
   ) => {
     try {
-      if (!q) return reply("*Please provide a search query!* 🔍");
+      if (!q) return reply("*Video එකෙ නම එක්ක හොයන්න!* 🔍");
 
-      reply("*Searching YouTube for you...* ⌛");
+      reply("*Video එක හොයන ගමන්...* ⌛");
 
       const search = await yts(q);
 
       if (!search || !search.all || search.all.length === 0) {
-        return reply("*No results found on YouTube.* ☹️");
+        return reply("*Video හොයාගන්න බැරි උනා බන්.* ☹️");
       }
 
       const results = search.videos.slice(0, 10); 
@@ -38,17 +38,17 @@ cmd(
       )).join("\n\n");
 
       const caption = `  
-Your youtube search results
-─────────────────────────
+*_ඔයාගෙ youtube search results එක_*
+      ─────────────────────────
 🔎 *Query*: ${q}
 ${formattedResults}
    `;
 
-      await danuwa.sendMessage(
+      await saduni.sendMessage(
         from,
         {
           image: {
-            url: "https://github.com/DANUWA-MD/DANUWA-MD/blob/main/images/yts.png?raw=true",
+            url: "https://github.com/saduni-MD/saduni-MD/blob/main/images/yts.png?raw=true",
           },
           caption,
         },
