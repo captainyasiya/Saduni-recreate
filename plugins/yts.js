@@ -48,7 +48,7 @@ ${formattedResults}
         from,
         {
           image: {
-            url: "https://github.com/saduni-MD/saduni-MD/blob/main/images/yts.png?raw=true",
+            url: "https://github.com/captainyasiya/Saduni-recreate/blob/main/images/SADUNI%20-%20MD%20youtube.png?raw=true",
           },
           caption,
         },
@@ -56,7 +56,7 @@ ${formattedResults}
       );
     } catch (err) {
       console.error(err);
-      reply("*An error occurred while searching YouTube.* ❌");
+      reply("*අඩො මොකක් හරි අවුලක් බන්.* ❌");
     }
   }
 );
