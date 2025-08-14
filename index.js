@@ -87,7 +87,7 @@ async function connectToWA() {
     } else if (connection === 'open') {
       console.log('✅ සදුනි-MD connected to WhatsApp');
 
-      const up = `*සදුනි-MD connected to Whatsapp✅*                       *Created by: Yasiru Wijewardhana*`;
+      const up = `*සදුනි-MD Connected✅*                     *Created by: Yasiru Wijewardhana*`;
       await saduni.sendMessage(ownerNumber[0] + "@s.whatsapp.net", {
         image: { url: `https://github.com/captainyasiya/Saduni-recreate/blob/main/images/SADUNI%20-%20MD%202.0.png?raw=true` },
         caption: up
